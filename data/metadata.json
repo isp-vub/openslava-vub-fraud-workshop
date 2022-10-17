@@ -1,0 +1,204 @@
+{
+    "tables": {
+        "customer_metadata": {
+            "fields": {
+                "ID": {
+                    "type": "id",
+                    "subtype": "integer"
+                },
+                "GENDER": {
+                    "type": "categorical"
+                },
+                "AGE_YEARS": {
+                    "type": "numerical",
+                    "subtype": "integer"
+                },
+                "CITY_ADDRESS": {
+                    "type": "categorical"
+                },
+                "VL_CURR_BALANCE": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_INCOME": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_TXN_ALL": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "CNT_CARDS": {
+                    "type": "numerical",
+                    "subtype": "integer"
+                },
+                "CNT_TXN": {
+                    "type": "numerical",
+                    "subtype": "integer"
+                },
+                "CNT_TXN_3M": {
+                    "type": "numerical",
+                    "subtype": "integer"
+                },
+                "VL_CURR_BALANCE_3M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_TXN_ALL_3M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_INCOME_3M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "CNT_TXN_6M": {
+                    "type": "numerical",
+                    "subtype": "integer"
+                },
+                "VL_CURR_BALANCE_6M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_TXN_ALL_6M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_INCOME_6M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "CNT_TXN_12M": {
+                    "type": "numerical",
+                    "subtype": "integer"
+                },
+                "VL_CURR_BALANCE_12M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_TXN_ALL_12M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "VL_INCOME_12M": {
+                    "type": "numerical",
+                    "subtype": "float"
+                }
+            },
+            "constraints": [
+                {
+                    "constraint": "sdv.constraints.tabular.ScalarRange",
+                    "column_name": "AGE_YEARS",
+                    "low_value": 15,
+                    "high_value": 100,
+                    "strict_boundaries": true
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "CNT_CARDS"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_CURR_BALANCE"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_CURR_BALANCE_3M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_CURR_BALANCE_6M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_CURR_BALANCE_12M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_INCOME"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_INCOME_3M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_INCOME_6M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_INCOME_12M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_TXN_ALL"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_TXN_ALL_3M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_TXN_ALL_6M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_TXN_ALL_12M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "CNT_TXN"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "CNT_TXN_3M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "CNT_TXN_6M"
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "CNT_TXN_12M"
+                }
+            ],
+            "primary_key": "ID"
+        },
+        "transactions": {
+            "fields": {
+                "ID": {
+                    "type": "id",
+                    "subtype": "integer",
+                    "ref": {
+                        "table": "customer_metadata",
+                        "field": "ID"
+                    }
+                },
+                "DT_TXN": {
+                    "type": "datetime"
+                },
+                "VL_TXN": {
+                    "type": "numerical",
+                    "subtype": "float"
+                },
+                "CURRENCY": {
+                    "type": "categorical"
+                }
+            },
+            "constraints": [
+                {
+                    "constraint": "sdv.constraints.tabular.ScalarRange",
+                    "column_name": "DT_TXN",
+                    "low_value": "2020-12-31",
+                    "high_value": "2022-01-01",
+                    "strict_boundaries": true
+                },
+                {
+                    "constraint": "sdv.constraints.tabular.Positive",
+                    "column_name": "VL_TXN"
+                }
+            ],
+            "primary_key": "ID"
+        }
+    }
+}
